@@ -19,7 +19,7 @@ export class LandingPage implements OnInit {
   ngOnInit() {
     this.auth.authObservable.subscribe((action) => {
       this.action = action
-      if(action.action == AuthActions.SignInSuccess){
+      if(action.action == AuthActions.SignInSuccess || action.action == AuthActions.AutoSignInSuccess){
         this.navCtrl.navigateRoot('home');
       }
     });
