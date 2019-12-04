@@ -16,6 +16,11 @@ export class AuthGuardService implements CanActivate {
     ) { }
 
   public async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
+    
+    this.authService.getTokenFromStorage()
+    .then( (value) => { if (!value) { this.navCtrl.navigateRoot('landing'); } })
+    .catch( () => this.navCtrl.navigateRoot('landing'));
+    
     let authenticated : boolean  = await this.authService.authObservable.pipe(skipWhile(action => action.action == AuthActions.Default),
                                                                               take(1), 
                                                                               map((action : IAuthAction) => action.tokenResponse != undefined)).toPromise();
