@@ -9,6 +9,8 @@ import { StorageService } from './angular/storage.service';
 import { RequestorService } from './angular/requestor.service';
 import { IonicImplicitRequestHandler } from 'ionic-appauth/lib/implicit-request-handler';
 
+const TOKEN_RESPONSE_KEY = 'token_response';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -44,6 +46,10 @@ export class AuthService extends IonicAuth  {
     }
     
     super.startUpAsync();
+  }
+  
+  async getTokenFromStorage() {
+    return await this.storage.getItem(TOKEN_RESPONSE_KEY);
   }
 
   private addConfig(){
