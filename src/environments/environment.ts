@@ -7,8 +7,8 @@ export const environment = {
   auth_config: {
     identity_client: 'examplemobile',
     identity_server: 'http://localhost:52652',
-    redirect_url: 'appauth://callback',
-    end_session_redirect_url: 'appauth://endSession',
+    redirect_url: 'appauth://implicit/authcallback',
+    end_session_redirect_url: 'appauth://implicit/endsession',
     scopes: 'openid offline_access',
     usePkce: true
   }
