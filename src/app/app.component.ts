@@ -1,4 +1,4 @@
-import { AuthService } from './core/auth.service';
+import { AuthService, AuthObserver } from 'ionic-appauth';
 import { Component } from '@angular/core';
 
 import { Platform } from '@ionic/angular';
@@ -10,20 +10,20 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
+  authObserver: AuthObserver;
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar,
-    private auth : AuthService,
+    private statusBar: StatusBar
   ) {
     this.initializeApp();
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
-      this.auth.startUpAsync();
       this.statusBar.styleDefault();
-      this.splashScreen.hide();     
+      this.splashScreen.hide();
     });
   }
 }

@@ -1,13 +1,12 @@
 import { Requestor, StorageBackend } from '@openid/appauth';
-import { NgModule } from '@angular/core';
+import { NgModule, NgZone } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { Platform } from '@ionic/angular';
 
 import { HttpClient } from '@angular/common/http';
-import { browserFactory, storageFactory, httpFactory } from './factories';
-import { Browser } from 'ionic-appauth';
-
+import { browserFactory, storageFactory, httpFactory, authFactory } from './factories';
+import { Browser, AuthService } from 'ionic-appauth';
 
 @NgModule({
   imports: [
@@ -28,6 +27,11 @@ import { Browser } from 'ionic-appauth';
       provide: Browser,
       useFactory : browserFactory,
       deps: [Platform]
+    },
+    {
+      provide: AuthService,
+      useFactory : authFactory,
+      deps: [Platform, NgZone, Requestor, Browser, StorageBackend]
     }
   ]
 })

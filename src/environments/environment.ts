@@ -5,12 +5,12 @@
 export const environment = {
   production: false,
   auth_config: {
-    identity_client: 'examplemobile',
-    identity_server: 'http://localhost:52652',
-    redirect_url: 'appauth://implicit/authcallback',
-    end_session_redirect_url: 'appauth://implicit/endsession',
+    client_id: 'appauth',
+    server_host: 'http://localhost:5200',
+    redirect_url: 'appauth://callback',
+    end_session_redirect_url: 'appauth://endsession',
     scopes: 'openid offline_access',
-    usePkce: true
+    pkce: true
   }
 };
 

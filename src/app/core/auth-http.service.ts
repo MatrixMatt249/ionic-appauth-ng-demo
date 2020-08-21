@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TokenResponse, Requestor } from '@openid/appauth';
-
-import { AuthService } from './auth.service';
+import { AuthService } from 'ionic-appauth';
 
 @Injectable({
   providedIn: 'root'
