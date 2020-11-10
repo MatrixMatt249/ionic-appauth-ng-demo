@@ -18,7 +18,11 @@ export let authFactory = (platform: Platform, ngZone: NgZone,
     if (platform.is('cordova')) {
         (window as any).handleOpenURL = (callbackUrl) => {
             ngZone.run(() => {
-                authService.handleCallback(callbackUrl);
+                if ((callbackUrl).indexOf(authService.authConfig.redirect_url) === 0) {
+                    authService.authorizationCallback(callbackUrl);
+                }else{
+                    authService.endSessionCallback();
+                }
             });
         };
     }
